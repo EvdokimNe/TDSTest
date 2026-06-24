@@ -12,7 +12,7 @@ namespace _Project.Code.Application.Core.States
         private readonly SceneLoadingService _sceneLoadingService;
         private readonly LoadingScreenController _loadingScreen;
 
-        private bool _nextAttemptFails = true;
+        private bool _nextAttemptFails = UnityEngine.Random.value > 0.5f;
 
         public GameplayState(
             ConfigService configService,
@@ -22,11 +22,6 @@ namespace _Project.Code.Application.Core.States
             _configService = configService;
             _sceneLoadingService = sceneLoadingService;
             _loadingScreen = loadingScreen;
-
-            if (UnityEngine.Random.value > 0.5)
-            {
-                _nextAttemptFails = false;
-            }
         }
 
         public async UniTask Enter(CancellationToken ct)
@@ -59,22 +54,21 @@ namespace _Project.Code.Application.Core.States
 
         private async UniTask RunFakeConnectionAsync(CancellationToken ct)
         {
-            while (true)
+            _loadingScreen.SetStatusText("Соединение с сервером...");
+            _loadingScreen.SetProgress(0f);
+            await UniTask.Delay(1500, cancellationToken: ct);
+           
+            if (_nextAttemptFails)
             {
+                _loadingScreen.ShowRetryButton("Ошибка соединения. Повторить попытку?");
+                await _loadingScreen.WaitForRetryAsync();
+
                 _loadingScreen.SetStatusText("Соединение с сервером...");
                 _loadingScreen.SetProgress(0f);
                 await UniTask.Delay(1500, cancellationToken: ct);
-
-                if (!_nextAttemptFails)
-                {
-                    _nextAttemptFails = true;
-                    return;
-                }
-
-                _nextAttemptFails = false;
-                _loadingScreen.ShowRetryButton("Ошибка соединения. Повторить попытку?");
-                await _loadingScreen.WaitForRetryAsync();
             }
+
+            _nextAttemptFails = !_nextAttemptFails;
         }
     }
 }
