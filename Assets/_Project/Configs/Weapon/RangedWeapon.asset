@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb1c19263fa4dc439e6d8a165f46696, type: 3}
+  m_Name: RangedWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Gameplay.Weapons.RangedWeaponConfig
+  DisplayName: "\u0421\u0422\u0420\u0415\u041B\u042F\u041B\u041A\u0410"
+  Cooldown: 0.5
+  AnimationTrigger: 
+  AttackConfig: {fileID: 11400000, guid: 9354ea72a2733cd409a0f48ee3ec27aa, type: 2}
+  ProjectileConfig: {fileID: 11400000, guid: 6ecc11aa9129a6941bca34049ccec4cb, type: 2}

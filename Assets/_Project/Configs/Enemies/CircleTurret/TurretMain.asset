@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9f38539e95cb643a624c750a9a6c4b, type: 3}
+  m_Name: TurretMain
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Gameplay.Enemies.EnemyConfig
+  StatsConfig: {fileID: 11400000, guid: 129deb140e86e6140ba35f8ac2db6907, type: 2}
+  DefenseModifiers: []
+  Prefab: {fileID: 4192931178627681752, guid: 89d4d46388bf6754cb772fc91720587c, type: 3}
+  MovementBehavior: {fileID: 11400000, guid: 79ff32070a69ca540a4882aaa45c136d, type: 2}
+  Weapon: {fileID: 11400000, guid: 5c1292c1bd5bd284b83cb1eaadb92f15, type: 2}
