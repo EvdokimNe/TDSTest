@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Code.Gameplay.Combat.StatsConfig
   Values:
   - type: 0
-    value: 300
+    value: 80
