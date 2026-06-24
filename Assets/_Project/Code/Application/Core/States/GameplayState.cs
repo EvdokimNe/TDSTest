@@ -12,7 +12,7 @@ namespace _Project.Code.Application.Core.States
         private readonly SceneLoadingService _sceneLoadingService;
         private readonly LoadingScreenController _loadingScreen;
 
-        private bool _nextAttemptFails = UnityEngine.Random.value < 0.5f;
+        private bool _nextAttemptFails = true;
 
         public GameplayState(
             ConfigService configService,
@@ -22,6 +22,11 @@ namespace _Project.Code.Application.Core.States
             _configService = configService;
             _sceneLoadingService = sceneLoadingService;
             _loadingScreen = loadingScreen;
+
+            if (UnityEngine.Random.value > 0.5)
+            {
+                _nextAttemptFails = false;
+            }
         }
 
         public async UniTask Enter(CancellationToken ct)

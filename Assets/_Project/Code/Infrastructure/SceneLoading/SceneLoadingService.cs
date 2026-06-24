@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 namespace _Project.Code.Infrastructure.SceneLoading
 {
-    //сделать нормальные loadingStep которые возможно ретраить в случае ошибки
     public sealed class SceneLoadingService
     {
         private bool _isLoading;
@@ -16,8 +15,10 @@ namespace _Project.Code.Infrastructure.SceneLoading
         public async UniTask LoadSceneAsync(string sceneName, Action<float> progressChanged = null)
         {
             if (_isLoading) return;
+#if UNITY_EDITOR
             if (!CanStartLoadingScene(SceneNames.Empty)) return;
             if (!CanStartLoadingScene(sceneName)) return;
+#endif
 
             _isLoading = true;
 
@@ -52,11 +53,11 @@ namespace _Project.Code.Infrastructure.SceneLoading
             progressChanged?.Invoke(1f);
         }
 
+#if UNITY_EDITOR
         private static bool CanStartLoadingScene(string sceneName)
         {
-#if !UNITY_EDITOR
             return true;
-#endif
+
             if (string.IsNullOrWhiteSpace(sceneName))
             {
                 Debug.LogError("[SceneLoadingService] Scene name is empty.");
@@ -69,7 +70,10 @@ namespace _Project.Code.Infrastructure.SceneLoading
 
             Debug.LogError($"[SceneLoadingService] Scene '{sceneName}' is not available. Add it to Build Settings or fix SceneNames.");
             return false;
+
         }
+
+#endif
 
 #if UNITY_EDITOR
         private static bool IsSceneInBuildSettings(string sceneName)

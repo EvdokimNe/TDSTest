@@ -94,6 +94,7 @@ namespace _Project.Code.Gameplay.UI.Cursor
         private bool IsAimingAtEnemy()
         {
             return false;
+            /*
             
             if (!_mouseAim.TryGetWorldPoint(out var worldPoint))
                 return false;
@@ -107,6 +108,7 @@ namespace _Project.Code.Gameplay.UI.Cursor
             }
 
             return false;
+            */
         }
     }
 }
